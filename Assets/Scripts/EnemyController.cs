@@ -67,7 +67,7 @@ public class EnemyController : MonoBehaviour {
     {
 
        // Debug.Log("Position " + transform.position.x + "," + transform.position.y);
-        if (collision.gameObject.tag.Equals("Edge"))
+        if (collision.gameObject.tag.Equals("Edge") || collision.gameObject.tag.Equals("Enemy"))
         {
 
             if (isIdle)
