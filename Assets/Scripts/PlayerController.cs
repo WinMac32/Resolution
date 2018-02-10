@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public Transform cameraTransform;
     public float walkSpeed;
@@ -16,14 +17,16 @@ public class PlayerController : MonoBehaviour {
 
     private bool jump;
 
-	void Start () {
+    void Start()
+    {
         playerBody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         colliderHeight = playerCollider.bounds.extents.y;
         layerMask = LayerMask.GetMask("Ground");
-	}
-	
-	void Update () {
+    }
+
+    void Update()
+    {
         Vector2 position = playerBody.position;
         cameraTransform.position = new Vector3(position.x, position.y, cameraTransform.position.z);
 
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour {
         {
             jump = true;
         }
-	}
+    }
 
     private void FixedUpdate()
     {
@@ -55,6 +58,6 @@ public class PlayerController : MonoBehaviour {
 
     private bool isGrounded()
     {
-        return Physics2D.Raycast(playerBody.position, -Vector2.up, colliderHeight * 2f+0.1f, layerMask);
+        return Physics2D.Raycast(playerBody.position, -Vector2.up, colliderHeight * 2f + 0.1f, layerMask);
     }
 }
