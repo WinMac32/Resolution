@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea6739ac50ff441b94933fdf4e85cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lotionManager: {fileID: 0}
+  lotionManager: {fileID: 296000286}
 --- !u!4 &296000285
 Transform:
   m_ObjectHideFlags: 0
@@ -167,3 +167,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLotion: 100
+  lotionStash: 70
