@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour {
         if (displacement.magnitude < searchRange)
         {
             RB2D.velocity=new Vector2(speed*getSign(displacement.x), RB2D.velocity.y);
-            fixedSpeed();
+            fixedXSpeed();
             if (getSign(displacement.x) > 0) //enemy tracing player on the right
             {
                 isFacingRight = 1;
@@ -50,7 +50,7 @@ public class EnemyController : MonoBehaviour {
         else if (displacement.magnitude > searchRange)
         {
             isIdle = true;
-            fixedSpeed();
+            fixedXSpeed();
             
         }
         // Debug.Log("isIdle = " + isIdle);
@@ -92,7 +92,7 @@ public class EnemyController : MonoBehaviour {
         //Todo flip the sprite
         isFacingRight *= -1;
         RB2D.velocity = new Vector2(speed*isFacingRight, RB2D.velocity.y);
-        fixedSpeed();
+        fixedXSpeed();
         currentFlipCd = flipCD;
     }
     private float getSign(float x)
@@ -110,11 +110,13 @@ public class EnemyController : MonoBehaviour {
     }
 
 
-    private void fixedSpeed()
+    private void fixedXSpeed()
     {
         if (RB2D.velocity.magnitude > 0)
         {
-            RB2D.velocity = RB2D.velocity.normalized * speed;
+            RB2D.velocity = RB2D.velocity.normalized * speed;//now the speed is normalized
         }
+
+        RB2D.velocity *= (speed / Mathf.Abs( RB2D.velocity.x)); // now the x component of the velocity is equal to the designed speed, and the overall speed is scaled acoordingly
     }
 }
