@@ -12,15 +12,17 @@ public class EnemyController : MonoBehaviour {
     private Vector2 displacement;
     private Rigidbody2D RB2D;
     private bool isIdle = true;
-    private float flipCD = 0.2f;
+    private float flipCD = 0.3f;
     private float currentFlipCd = 0f;
     private float isFacingRight = 1f;
+    private bool isInitalized = false;
+   // private bool isGrounded = false;
 
 
 	// Use this for initialization
 	void Start () {
-        currentHP = maxHP;
-        RB2D = GetComponent<Rigidbody2D>();
+
+
 	}
 
     private void Update()
@@ -30,13 +32,16 @@ public class EnemyController : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
-
+        if (!isInitalized)
+        {
+            Initialize();
+        }
         displacement = target.transform.position -transform.position;
         //Debug.Log("flipCD " + currentflipCd);
         if (displacement.magnitude < searchRange)
         {
             RB2D.velocity=new Vector2(speed*getSign(displacement.x), RB2D.velocity.y);
-            fixedXSpeed();
+            //fixedXSpeed();
             if (getSign(displacement.x) > 0) //enemy tracing player on the right
             {
                 isFacingRight = 1;
@@ -50,7 +55,7 @@ public class EnemyController : MonoBehaviour {
         else if (displacement.magnitude > searchRange)
         {
             isIdle = true;
-            fixedXSpeed();
+            //fixedXSpeed();
             
         }
         // Debug.Log("isIdle = " + isIdle);
@@ -60,6 +65,7 @@ public class EnemyController : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+
        // Debug.Log("Position " + transform.position.x + "," + transform.position.y);
         if (collision.gameObject.tag.Equals("Edge"))
         {
@@ -114,9 +120,24 @@ public class EnemyController : MonoBehaviour {
     {
         if (RB2D.velocity.magnitude > 0)
         {
+            print(this.gameObject.name + " :" );
             RB2D.velocity = RB2D.velocity.normalized * speed;//now the speed is normalized
         }
 
-        RB2D.velocity *= (speed / Mathf.Abs( RB2D.velocity.x)); // now the x component of the velocity is equal to the designed speed, and the overall speed is scaled acoordingly
+    }
+
+    private void Initialize()
+    {
+        currentHP = maxHP;
+        RB2D = GetComponent<Rigidbody2D>();
+        displacement = target.transform.position - transform.position;
+        if (displacement.magnitude > searchRange)
+        {
+
+            isIdle = true;
+            RB2D.velocity = new Vector2(2f, 0f);
+            fixedXSpeed();
+        }
+        isInitalized = true;
     }
 }
