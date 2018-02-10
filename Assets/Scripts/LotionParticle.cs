@@ -9,16 +9,9 @@ public class LotionParticle : MonoBehaviour
 
     private float startTime;
 
-    private CircleCollider2D circleCollider;
-    private float height;
-    private float originalScale;
-
     void Start()
     {
         startTime = Time.time;
-        circleCollider = GetComponent<CircleCollider2D>();
-        height = circleCollider.bounds.extents.y * 2;
-        originalScale = transform.localScale.y;
     }
 
     void Update()
@@ -27,8 +20,5 @@ public class LotionParticle : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        var amt = (Time.time - startTime) / expiry;
-        transform.localScale = new Vector3(transform.localScale.x, originalScale - (amt / 2));
     }
 }

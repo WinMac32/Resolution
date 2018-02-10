@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform;
     public float walkSpeed;
     public float jumpAmount;
+    public Transform[] abilityEmitters;
 
     private float colliderHeight;
     private Rigidbody2D playerBody;
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private LayerMask layerMask;
 
     private bool jump;
+
+    private bool left;
 
     void Start()
     {
@@ -40,13 +43,25 @@ public class PlayerController : MonoBehaviour
     {
         var xAxis = Input.GetAxisRaw("Horizontal");
 
+        if (xAxis < 0)
+        {
+            Flip(-1);
+            foreach (var trans in abilityEmitters)
+            {
+                trans.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
+            }
+        }
+        else if (xAxis > 0)
+        {
+            Flip(1);
+            foreach (var trans in abilityEmitters)
+            {
+                trans.rotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
+            }
+        }
+
         Vector2 velocity = new Vector2(xAxis * walkSpeed, playerBody.velocity.y);
         playerBody.velocity = velocity;
-
-        if (jump)
-        {
-            Debug.Log(isGrounded());
-        }
 
         if (jump && isGrounded())
         {
@@ -59,5 +74,10 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded()
     {
         return Physics2D.Raycast(playerBody.position, -Vector2.up, colliderHeight * 2f + 0.1f, layerMask);
+    }
+
+    private void Flip(float mult)
+    {
+        transform.localScale = new Vector2(mult * Mathf.Abs(transform.localScale.x), transform.localScale.y);
     }
 }
