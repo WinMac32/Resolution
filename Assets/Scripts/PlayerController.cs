@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerBody;
     private BoxCollider2D playerCollider;
 
+    private GameManager gameManager;
+
     private LayerMask layerMask;
 
     private bool jump;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gameManager = GetComponent<GameManager>();
         playerBody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         colliderHeight = playerCollider.bounds.extents.y;
