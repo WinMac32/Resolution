@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    public static GameManager instance { get; private set; }
+
     public LotionManager lotionManager;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-
-        lotionManager = new LotionManager();
+        instance = this;
     }
 
     void Start()

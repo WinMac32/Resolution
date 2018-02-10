@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class LotionManager : MonoBehaviour
 {
-
     public float maxLotion;
+    public float lotionStash;
 
-    public float lotionStash { get; private set; }
-
-    void Start()
+    public bool UseLotion(float amount)
     {
-        
+        if (lotionStash > amount)
+        {
+            lotionStash -= amount;
+            Debug.Log("Our lotion is now " + lotionStash);
+            return true;
+        }
+        return false;
     }
 
-    void Update()
+    public void Start()
     {
-
     }
 }
