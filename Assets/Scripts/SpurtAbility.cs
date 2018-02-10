@@ -11,15 +11,9 @@ public class SpurtAbility : PlayerAbility
     public int amount = 10;
     public float speed = 10;
 
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        if (Input.GetButton("Spurt"))
+        if (Input.GetButton(button))
         {
             for (int i = 0; i < amount; i++)
             {

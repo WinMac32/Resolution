@@ -5,13 +5,6 @@ using UnityEngine;
 public abstract class PlayerAbility : MonoBehaviour
 {
 
-    void Start()
-    {
+    public string button;
 
-    }
-
-    void Update()
-    {
-
-    }
 }
