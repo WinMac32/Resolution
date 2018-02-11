@@ -28,6 +28,8 @@ public class EnemyController : MonoBehaviour {
 	private float dyingTime = 0f;
     // private bool isGrounded = false;
 	private Animator animator;
+    private Vector3 startAscendPosition;
+    private Vector3 targetAscendPosition;
 
     private float lastHit;
 
@@ -71,6 +73,12 @@ public class EnemyController : MonoBehaviour {
 			if (dyingTime > deathAnimLength) {
 				DestroyObject(gameObject);
 			}
+
+            transform.position = Vector3.Lerp(startAscendPosition, targetAscendPosition, dyingTime / deathAnimLength);
+            SpriteRenderer render = GetComponent<SpriteRenderer>();
+            Color color = render.color;
+            color.a = 1 - (dyingTime / deathAnimLength);
+            render.color = color;
 		} else {
 
 			if (attackTime > attackAnimLength) {
@@ -175,11 +183,26 @@ public class EnemyController : MonoBehaviour {
 		if (minSpawner != null) {
         	minSpawner.spawn();
 		}
-
 		isDying = true;
 		dyingTime = 0f;
 		RB2D.velocity = new Vector2 (0, 0);
 		animator.SetTrigger ("ascend");
+
+        Vector3 camTop = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+        targetAscendPosition = new Vector3(transform.position.x, camTop.y, transform.position.z);
+
+        startAscendPosition = transform.position;
+
+        RB2D.simulated = false;
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = this.gameObject.AddComponent<AudioSource>();
+        }
+
+        AudioManager.instance.PlayAudio(audioSource, SFX.Ascend);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -196,6 +219,15 @@ public class EnemyController : MonoBehaviour {
 					ignorePlayer = true;
 					isIdle = true;
 					fixedXSpeed ();
+
+                    AudioSource audioSource = GetComponent<AudioSource>();
+
+                    if (audioSource == null)
+                    {
+                        audioSource = this.gameObject.AddComponent<AudioSource>();
+                    }
+
+                    AudioManager.instance.PlayAudio(audioSource, SFX.PlayerHit);
 				}
 			}
 		}
