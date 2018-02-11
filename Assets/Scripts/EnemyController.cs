@@ -30,7 +30,6 @@ public class EnemyController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 		animator = GetComponent<Animator> ();
 	}
 
@@ -64,7 +63,7 @@ public class EnemyController : MonoBehaviour {
 				ignorePlayer = false;
 			}
 		} else {
-			
+
 			if (attackTime > attackAnimLength) {
 				flip();
 				isAttacking = false;
@@ -150,6 +149,8 @@ public class EnemyController : MonoBehaviour {
         isInitalized = true;
     }
 
+    //enemy getting hit
+
     public void Damage(int amount)
     {
         currentHP -= amount;
@@ -161,7 +162,22 @@ public class EnemyController : MonoBehaviour {
 
     public void Kill()
     {
-        // TODO
+        DropSpawner[] spawners = FindObjectsOfType<DropSpawner>();
+        DropSpawner minSpawner = null;
+        float minDist = 0;
+        foreach (DropSpawner spawner in spawners)
+        {
+            float dist = (spawner.transform.position - transform.position).magnitude;
+            if (minSpawner == null || minDist > dist)
+            {
+                minSpawner = spawner;
+                minDist = dist;
+            }
+        }
+
+        minSpawner.spawn();
+
+        DestroyObject(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -171,19 +187,15 @@ public class EnemyController : MonoBehaviour {
             if (Time.time - lastHit >= hitSpeed)
             {
 				animator.SetTrigger ("attack");
-                target.Damage(hitDamage);
+				target.Damage(hitDamage);
 				isAttacking = true;
 				attackTime = 0.0f;
 				RB2D.velocity = new Vector2 (0, 0);
-                lastHit = Time.time;
-                ignorePlayer = true;
-                isIdle = true;
-                fixedXSpeed();
+				lastHit = Time.time;
+				ignorePlayer = true;
+				isIdle = true;
+				fixedXSpeed();
             }
         }
     }
-
-	private IEnumerator Delay (float length) {
-		yield return new WaitForSeconds (length);
-	}
 }

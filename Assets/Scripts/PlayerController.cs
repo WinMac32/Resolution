@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
         transform.localScale = new Vector2(mult * Mathf.Abs(transform.localScale.x), transform.localScale.y);
     }
 
+    //player getting hit
     public void Damage(int lotion)
     {
         if (!gameManager.lotionManager.UseLotion(lotion))
