@@ -7,7 +7,9 @@ public class EnemyManager : MonoBehaviour {
     public Transform[] swampPoints;
     public PlayerController player;
     public EnemyController enemyPreFab;
-    private EnemyController enemy;
+	public float xSpawnOffset;
+	public float ySpawnOffset;
+	private EnemyController enemy;
 
     // Use this for initialization
     void Start () {
@@ -16,7 +18,10 @@ public class EnemyManager : MonoBehaviour {
         {
             for (int i=0; i < swampPoints.Length; i++)
             {
-                enemy= Instantiate(enemyPreFab, swampPoints[i].position,Quaternion.identity) as EnemyController;
+				Vector3 spawnPosition = new Vector3 (swampPoints[i].position.x + xSpawnOffset, 
+					swampPoints[i].position.y + ySpawnOffset, 
+					swampPoints[i].position.z);
+                enemy= Instantiate(enemyPreFab, spawnPosition, Quaternion.identity) as EnemyController;
                 enemy.target = player;
             }
             
