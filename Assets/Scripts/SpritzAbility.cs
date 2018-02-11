@@ -6,11 +6,16 @@ public class SpritzAbility : PlayerAbility
 {
 
     public ParticleSystem particles;
+    public Transform projectile;
+
+    private PlayerController player;
 
     public float abilityTime;
     public float rechargeTime;
     public float traceDistance;
     public float lotionCost = 10f;
+    public float projectileSpeed = 5f;
+    public int damage;
 
     private float startTime;
     private float lastActiveTime;
@@ -19,6 +24,7 @@ public class SpritzAbility : PlayerAbility
 
     void Start()
     {
+        player = GetComponent<PlayerController>();
         lotionManager = GameManager.instance.lotionManager;
         startTime = -1;
         lastActiveTime = Time.time;
@@ -32,14 +38,25 @@ public class SpritzAbility : PlayerAbility
             {
                 startTime = -1;
                 particles.Stop();
-                lastActiveTime = Time.time;
             }
         }
 
         if (Input.GetButtonDown(button) && Time.time - lastActiveTime >= rechargeTime && lotionManager.UseLotion(lotionCost))
         {
+            Quaternion rotation = Quaternion.Euler(0, player.left ? 180 : 0, 0);
+            particles.transform.rotation = rotation;
+
+            lastActiveTime = Time.time;
             startTime = Time.time;
             particles.Play();
+
+            var velocity = rotation * new Vector3(projectileSpeed, 0, 0);
+
+            var instance = Instantiate(projectile);
+            instance.GetComponent<AbilityProjectile>().damage = damage;
+            Rigidbody2D body = instance.GetComponent<Rigidbody2D>();
+            body.position = transform.position + new Vector3(0, 0.5f, 0);
+            body.velocity = velocity;
         }
     }
 }

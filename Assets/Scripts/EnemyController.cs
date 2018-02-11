@@ -140,4 +140,18 @@ public class EnemyController : MonoBehaviour {
         }
         isInitalized = true;
     }
+
+    public void Damage(int amount)
+    {
+        currentHP -= amount;
+        if (currentHP <= 0)
+        {
+            Kill();
+        }
+    }
+
+    public void Kill()
+    {
+        // TODO
+    }
 }

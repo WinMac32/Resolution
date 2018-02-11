@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform;
     public float walkSpeed;
     public float jumpAmount;
-    public Transform[] abilityEmitters;
 
     private float colliderHeight;
     private Rigidbody2D playerBody;
@@ -20,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private bool jump;
 
-    private bool left;
+    public bool left { get; private set; }
 
     void Start()
     {
@@ -44,23 +43,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var xAxis = Input.GetAxisRaw("Horizontal");
+        float xAxis = Input.GetAxisRaw("Horizontal");
 
         if (xAxis < 0)
         {
             Flip(-1);
-            foreach (var trans in abilityEmitters)
-            {
-                trans.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
-            }
+            left = true;
         }
         else if (xAxis > 0)
         {
             Flip(1);
-            foreach (var trans in abilityEmitters)
-            {
-                trans.rotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
-            }
+            left = false;
         }
 
         Vector2 velocity = new Vector2(xAxis * walkSpeed, playerBody.velocity.y);
