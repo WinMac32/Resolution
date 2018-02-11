@@ -125,7 +125,7 @@ public class EnemyController : MonoBehaviour {
     {
         if (RB2D.velocity.magnitude > 0)
         {
-            print(this.gameObject.name + " :" );
+ //           print(this.gameObject.name + " :" );
             RB2D.velocity = RB2D.velocity.normalized * speed;//now the speed is normalized
         }
 

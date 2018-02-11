@@ -11,13 +11,13 @@ public class EnemyManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        print("1");
+
 		if (swampPoints.Length > 0)
         {
-            print("2");
+
             for (int i=0; i < swampPoints.Length; i++)
             {
-                print("3");
+
                 enemy= Instantiate(enemyPreFab, swampPoints[i].position,Quaternion.identity) as EnemyController;
                 enemy.target = player;
             }
