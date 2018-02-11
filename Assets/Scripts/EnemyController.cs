@@ -158,7 +158,22 @@ public class EnemyController : MonoBehaviour {
 
     public void Kill()
     {
-        // TODO
+        DropSpawner[] spawners = FindObjectsOfType<DropSpawner>();
+        DropSpawner minSpawner = null;
+        float minDist = 0;
+        foreach (DropSpawner spawner in spawners)
+        {
+            float dist = (spawner.transform.position - transform.position).magnitude;
+            if (minSpawner == null || minDist > dist)
+            {
+                minSpawner = spawner;
+                minDist = dist;
+            }
+        }
+
+        minSpawner.spawn();
+
+        DestroyObject(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

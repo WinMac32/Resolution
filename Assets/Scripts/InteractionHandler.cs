@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class InteractionHandler : MonoBehaviour
 {
-    public abstract void handleAction(GameObject source);
+    public abstract void HandleAction(GameObject source);
 }

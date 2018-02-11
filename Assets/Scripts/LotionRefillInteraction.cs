@@ -13,9 +13,9 @@ public class LotionRefillInteraction : InteractionHandler
         lotionManager = GameManager.instance.lotionManager;
     }
 
-    public override void handleAction(GameObject source)
+    public override void HandleAction(GameObject source)
     {
-        lotionManager.lotionStash += lotionRefill;
+        lotionManager.RefillLotion(lotionRefill);
         DestroyObject(source);
     }
 }

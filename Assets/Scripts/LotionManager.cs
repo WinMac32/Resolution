@@ -27,6 +27,16 @@ public class LotionManager : MonoBehaviour
         return false;
     }
 
+    public void RefillLotion(float amount)
+    {
+        lotionStash += amount;
+        if (lotionStash > maxLotion)
+        {
+            lotionStash = maxLotion;
+        }
+        onUseLotion();
+    }
+
     public void Start()
     {
     }
