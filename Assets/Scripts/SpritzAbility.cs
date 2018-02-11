@@ -10,17 +10,21 @@ public class SpritzAbility : PlayerAbility
     public float abilityTime;
     public float rechargeTime;
     public float traceDistance;
+    public float lotionCost = 10f;
 
     private float startTime;
     private float lastActiveTime;
+
+    private LotionManager lotionManager;
 	private Animator animator;
 
     void Start()
     {
+        lotionManager = GameManager.instance.lotionManager;
         startTime = -1;
         lastActiveTime = Time.time;
 		animator = GetComponent<Animator> ();
-	}
+    }
 
     void Update()
     {
@@ -35,7 +39,7 @@ public class SpritzAbility : PlayerAbility
             }
         }
 
-        if (Input.GetButtonDown(button) && Time.time - lastActiveTime >= rechargeTime)
+        if (Input.GetButtonDown(button) && Time.time - lastActiveTime >= rechargeTime && lotionManager.UseLotion(lotionCost))
         {
             startTime = Time.time;
             particles.Play();
