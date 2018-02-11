@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class ExitController : MonoBehaviour {
     private GameManager gameManager;
     private LotionManager lotionManager;
-    public int lotionNeeded;
-	// Use this for initialization
-	void Start () {
+    public string sceneName;
+    // Use this for initialization
+    void Start () {
         lotionManager = GameManager.instance.lotionManager;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,7 +16,7 @@ public class ExitController : MonoBehaviour {
 
         if (collision.gameObject.tag=="Player" )
         {
-			GameManager.instance.LoadScene("End Scene");
+			GameManager.instance.LoadScene(sceneName);
         }
     }
     // Update is called once per frame

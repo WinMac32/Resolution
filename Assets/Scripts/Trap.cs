@@ -28,15 +28,15 @@ public class Trap : MonoBehaviour {
             player.Damage(DoTDamage);
             currentTime = DoTPeriod;
 
-            if (!AudioManager.instance._audioSource.isPlaying)
+            AudioSource audioSource = GetComponent<AudioSource>();
+
+            if (audioSource == null)
             {
-                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
 
-                if (audioSource == null)
-                {
-                    audioSource = this.gameObject.AddComponent<AudioSource>();
-                }
-
+            if (!audioSource.isPlaying)
+            {
                 AudioManager.instance.PlayAudio(audioSource, SFX.Steam);
             }
         }

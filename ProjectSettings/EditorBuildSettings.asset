@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End Scene.unity
     guid: d0cf471706af44163b2d6c08054a8883
+  - enabled: 1
+    path: Assets/Scenes/Reservior_Level.unity
+    guid: c1312bdfc8c263549983a28c57596928
