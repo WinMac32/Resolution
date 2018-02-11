@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LotionManager : MonoBehaviour
 {
+    public delegate void OnUseLotion();
+    public OnUseLotion onUseLotion;
+
     public float maxLotion;
     public float lotionStash;
 
@@ -13,6 +16,12 @@ public class LotionManager : MonoBehaviour
         {
             lotionStash -= amount;
             Debug.Log("Our lotion is now " + lotionStash);
+
+            if (onUseLotion != null)
+            {
+                onUseLotion();
+            }
+
             return true;
         }
         return false;
