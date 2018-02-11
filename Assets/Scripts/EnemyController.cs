@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour {
             
         }
         // Debug.Log("isIdle = " + isIdle);
-        Debug.Log("speed: " + speed + ", velocity: " + RB2D.velocity.magnitude);
+        // Debug.Log("speed: " + speed + ", velocity: " + RB2D.velocity.magnitude);
 	}
 
 
