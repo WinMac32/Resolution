@@ -5,14 +5,13 @@ using UnityEngine;
 public class ElevatorControler : MonoBehaviour {
 
     public ElevatorControler target;
-    public PlayerController player;
+
     public GameObject platfrom;
     public bool isPlatfromHere;
     public float CD = 3f;
     public float currentCD = 0;
 	// Use this for initialization
 	void Start () {
-        player = GetComponent<PlayerController>();
         if (isPlatfromHere)
         {
             platfrom.SetActive(true);
@@ -41,7 +40,7 @@ public class ElevatorControler : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player")&&currentCD<=0)
         {
-            player.transform.position = target.transform.position;
+            other.gameObject.transform.position = target.transform.position;
             platfrom.SetActive(false);
             isPlatfromHere = false;
             target.isPlatfromHere = true;
