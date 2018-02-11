@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour {
     public float speed = 2;
     public float hitSpeed;
     public int hitDamage;
+	public float attackAnimLength = 1.4f;
 
     private Vector2 displacement;
     private Rigidbody2D RB2D;
@@ -20,19 +21,23 @@ public class EnemyController : MonoBehaviour {
     private float isFacingRight = 1f;
     private bool isInitalized = false;
     private bool ignorePlayer;
+	private bool isAttacking = false;
+	private float attackTime = 0f;
     // private bool isGrounded = false;
+	private Animator animator;
 
     private float lastHit;
 
 	// Use this for initialization
 	void Start () {
 
-
+		animator = GetComponent<Animator> ();
 	}
 
     private void Update()
     {
         currentFlipCd -= Time.deltaTime;
+		attackTime += Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -41,30 +46,31 @@ public class EnemyController : MonoBehaviour {
         {
             Initialize();
         }
-        displacement = target.transform.position -transform.position;
-        //Debug.Log("flipCD " + currentflipCd);
-        if (displacement.magnitude < searchRange && !ignorePlayer)
-        {
-            RB2D.velocity=new Vector2(speed*getSign(displacement.x), RB2D.velocity.y);
-            //fixedXSpeed();
-            if (getSign(displacement.x) > 0) //enemy tracing player on the right
-            {
-                isFacingRight = 1;
-            }
-            else if(getSign(displacement.x) < 0) //enemy tracing player on the right
-            {
-                isFacingRight = -1;
-            }
-            isIdle = false;
-        }
-        else if (displacement.magnitude > searchRange)
-        {
-            isIdle = true;
-            //fixedXSpeed();
-            ignorePlayer = false;
-        }
-        // Debug.Log("isIdle = " + isIdle);
-        // Debug.Log("speed: " + speed + ", velocity: " + RB2D.velocity.magnitude);
+		if (!isAttacking) {
+			displacement = target.transform.position - transform.position;
+			//Debug.Log("flipCD " + currentflipCd);
+			if (displacement.magnitude < searchRange && !ignorePlayer) {
+				RB2D.velocity = new Vector2 (speed * getSign (displacement.x), RB2D.velocity.y);
+				//fixedXSpeed();
+				if (getSign (displacement.x) > 0) { //enemy tracing player on the right
+					isFacingRight = 1;
+				} else if (getSign (displacement.x) < 0) { //enemy tracing player on the right
+					isFacingRight = -1;
+				}
+				isIdle = false;
+			} else if (displacement.magnitude > searchRange) {
+				isIdle = true;
+				//fixedXSpeed();
+				ignorePlayer = false;
+			}
+		} else {
+			
+			if (attackTime > attackAnimLength) {
+				flip();
+				isAttacking = false;
+				animator.SetTrigger ("attack");
+			}
+		}
 	}
 
 
@@ -99,10 +105,9 @@ public class EnemyController : MonoBehaviour {
 
     private void flip()
     {
-        //Debug.Log("yeah");
-        //Todo flip the sprite
         isFacingRight *= -1;
         RB2D.velocity = new Vector2(speed*isFacingRight, RB2D.velocity.y);
+		transform.localScale = new Vector2(isFacingRight * Mathf.Abs(transform.localScale.x), transform.localScale.y);
         fixedXSpeed();
         currentFlipCd = flipCD;
     }
@@ -125,7 +130,6 @@ public class EnemyController : MonoBehaviour {
     {
         if (RB2D.velocity.magnitude > 0)
         {
-            print(this.gameObject.name + " :" );
             RB2D.velocity = RB2D.velocity.normalized * speed;//now the speed is normalized
         }
 
@@ -166,13 +170,20 @@ public class EnemyController : MonoBehaviour {
         {
             if (Time.time - lastHit >= hitSpeed)
             {
+				animator.SetTrigger ("attack");
                 target.Damage(hitDamage);
+				isAttacking = true;
+				attackTime = 0.0f;
+				RB2D.velocity = new Vector2 (0, 0);
                 lastHit = Time.time;
                 ignorePlayer = true;
-                flip();
                 isIdle = true;
                 fixedXSpeed();
             }
         }
     }
+
+	private IEnumerator Delay (float length) {
+		yield return new WaitForSeconds (length);
+	}
 }
