@@ -35,6 +35,8 @@ public class LotionMeterManager : MonoBehaviour {
 		{
 			_lotionObjects[i].SetActive(false);
 		}
+		_currentLotionBottleCount = 4;
+		UpdateBottleDisplay ();
     }
 
     private void HandleOnRefillLotion()
@@ -78,7 +80,8 @@ public class LotionMeterManager : MonoBehaviour {
 
 	private void UpdateBottleDisplay()
 	{
-        for (int i = 0; i < _lotionObjects.Length; ++i)
+		Debug.Log ("bottleCount: " + _currentLotionBottleCount); 
+		for (int i = 0; i < _lotionObjects.Length; ++i)
 		{
             _lotionObjects[i].SetActive(i <= _currentLotionBottleCount);
         }

@@ -117,8 +117,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1906571577148718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.422, y: -0.408, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.726, y: 0.251, z: -0.011450573}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4888723548237050}
   - {fileID: 4387311281295078}
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
   walkSpeed: 3
-  jumpAmount: 20
+  jumpAmount: 10
   attackAnimLength: 1.33
 --- !u!114 &114913629617098654
 MonoBehaviour:
@@ -262,7 +262,7 @@ MonoBehaviour:
   particles: {fileID: 198097192898638402}
   projectile: {fileID: 4912775435854332, guid: 52a027ded6097fc4fa8dc9a7e122e196, type: 2}
   abilityTime: 1
-  rechargeTime: 4
+  rechargeTime: 1
   traceDistance: 2
   lotionCost: 10
   projectileSpeed: 20
@@ -479,7 +479,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4248,7 +4248,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
