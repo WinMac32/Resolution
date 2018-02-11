@@ -10125,6 +10125,7 @@ MonoBehaviour:
   enemyPreFab: {fileID: 114837545362426330, guid: 37057e4d9469ea54e943bf86feac38b4,
     type: 2}
   xSpawnOffset: 0.1
+  ySpawnOffset: -0.05
 --- !u!4 &266798184
 Transform:
   m_ObjectHideFlags: 0
@@ -39537,7 +39538,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4726462164136434, guid: 59a0d329e60cc0648a6b651385f6dfde, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1658450967929914, guid: 59a0d329e60cc0648a6b651385f6dfde, type: 2}
       propertyPath: m_Name
@@ -76840,7 +76841,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4726462164136434, guid: 59a0d329e60cc0648a6b651385f6dfde, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1658450967929914, guid: 59a0d329e60cc0648a6b651385f6dfde, type: 2}
       propertyPath: m_Name
