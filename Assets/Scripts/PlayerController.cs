@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded()
     {
-        return Physics2D.Raycast(playerBody.position, -Vector2.up, colliderHeight * 2f + 0.1f, layerMask);
+        return Physics2D.CircleCast(playerBody.position,0.1f, -Vector2.up, colliderHeight * 2f + 0.1f, layerMask);
     }
 
     private void Flip(float mult)
