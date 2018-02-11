@@ -191,6 +191,7 @@ public class EnemyController : MonoBehaviour {
 		isDying = true;
 		dyingTime = 0f;
 		animator.SetTrigger ("ascend");
+        AudioManager.instance.PlayAudio(SFX.Ascend);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

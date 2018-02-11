@@ -17,7 +17,7 @@ public class LotionManager : MonoBehaviour
         if (lotionStash > amount)
         {
             lotionStash -= amount;
-
+            
             if (onUseLotion != null)
             {
                 onUseLotion();

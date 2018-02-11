@@ -54,6 +54,7 @@ public class SpritzAbility : PlayerAbility
             startTime = Time.time;
 
             particles.Play();
+            AudioManager.instance.PlayAudio(SFX.Squirt);
 
             var velocity = rotation * new Vector3(projectileSpeed, 0, 0);
 
