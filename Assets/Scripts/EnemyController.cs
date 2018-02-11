@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
+        isIdle = true;
 	}
 
     private void Update()
