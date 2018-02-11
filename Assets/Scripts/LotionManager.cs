@@ -6,6 +6,8 @@ public class LotionManager : MonoBehaviour
 {
     public delegate void OnUseLotion();
     public OnUseLotion onUseLotion;
+    public delegate void OnRefillLotion();
+    public OnRefillLotion onRefillLotion;
 
     public float maxLotion;
     public float lotionStash;
@@ -30,11 +32,17 @@ public class LotionManager : MonoBehaviour
     public void RefillLotion(float amount)
     {
         lotionStash += amount;
+        Debug.Log("Our lotion is now " + lotionStash);
+        
         if (lotionStash > maxLotion)
         {
             lotionStash = maxLotion;
         }
-        onUseLotion();
+        
+        if (onRefillLotion != null)
+        {
+            onRefillLotion();
+        }
     }
 
     public void Start()
