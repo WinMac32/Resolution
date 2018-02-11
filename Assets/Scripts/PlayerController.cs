@@ -100,7 +100,6 @@ public class PlayerController : MonoBehaviour
 
 	public void getAttacked(int lotion) {
 		Damage (lotion);
-		Debug.Log ("getting hurt");
 		isBeingAttacked = true;
 		attackTime = 0f;
 	}
