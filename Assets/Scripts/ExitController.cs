@@ -16,7 +16,7 @@ public class ExitController : MonoBehaviour {
 
         if (collision.gameObject.tag=="Player" )
         {
-			GameManager.instance.LoadScene("End Scene");
+			GameManager.instance.LoadScene("Reservior_Level");
         }
     }
     // Update is called once per frame
