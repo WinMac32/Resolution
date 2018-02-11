@@ -39,17 +39,20 @@ public class LotionMeterManager : MonoBehaviour {
 	{
         _currentLotion = _lotionManager.lotionStash;
         _lotionsPerBottle = (int)(_maxLotion / _lotionObjects.Length);
-        _currentLotionBottleCount = Mathf.FloorToInt(_currentLotion / _lotionsPerBottle);
+        _currentLotionBottleCount = Mathf.FloorToInt((_currentLotion - 1) / _lotionsPerBottle);
 
-		// Only update the display if we need to activate or deactivate some bottles
-		if (_lastLotionBottleCount != _currentLotionBottleCount)
-		{
-            UpdateBottleDisplay();
+        if (_currentLotionBottleCount >= 0)
+        {
+            // Only update the display if we need to activate or deactivate some bottles
+            if (_lastLotionBottleCount != _currentLotionBottleCount)
+            {
+                UpdateBottleDisplay();
+            }
+
+            UpdateLotionAmount();
         }
 
-        UpdateLotionAmount();
-
-        _lastLotionBottleCount = Mathf.FloorToInt(_currentLotion);
+        _lastLotionBottleCount = _currentLotionBottleCount;
     }
 
 	private void UpdateBottleDisplay()
@@ -67,7 +70,16 @@ public class LotionMeterManager : MonoBehaviour {
 
 	private void UpdateLotionAmount()
 	{
-        _lotions[_currentLotionBottleCount].fillAmount = (_currentLotion % _lotionsPerBottle);
+        float fillRatio = 0f;
+        if (Mathf.FloorToInt(_currentLotion / _lotionsPerBottle) > _currentLotionBottleCount)
+        {
+            fillRatio = 1f;
+        }
+        else
+        {
+            fillRatio = (_currentLotion % _lotionsPerBottle) / _lotionsPerBottle;
+        }
 
+        _lotions[_currentLotionBottleCount].fillAmount = fillRatio;
     }
 }

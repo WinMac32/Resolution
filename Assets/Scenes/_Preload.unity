@@ -166,5 +166,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813f0725c9cd8e947a4d2b52c289a78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLotion: 30000
-  lotionStash: 20000
+  maxLotion: 100
+  lotionStash: 100

@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 222326050492323888}
   - component: {fileID: 114841745777674720}
   m_Layer: 5
-  m_Name: Lotion
+  m_Name: Lotion 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 222461883441186132}
   - component: {fileID: 114434622436108852}
   m_Layer: 5
-  m_Name: Lotion
+  m_Name: Lotion 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 222681536940687016}
   - component: {fileID: 114356570721291676}
   m_Layer: 5
-  m_Name: Lotion
+  m_Name: Lotion 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 222743023136933196}
   - component: {fileID: 114200234392529558}
   m_Layer: 5
-  m_Name: Lotion
+  m_Name: Lotion 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,10 +305,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: dada7915639cf46fea4bfd2a9a8b910e, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -359,10 +359,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: dada7915639cf46fea4bfd2a9a8b910e, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -386,10 +386,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: dada7915639cf46fea4bfd2a9a8b910e, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -488,10 +488,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: dada7915639cf46fea4bfd2a9a8b910e, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -506,8 +506,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23184b528c41458ebff59e37ef94057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lotionObjects: []
-  _lotions: []
+  _lotionObjects:
+  - {fileID: 1375182854858062}
+  - {fileID: 1159133054989426}
+  - {fileID: 1474848837655364}
+  - {fileID: 1765886284408790}
+  - {fileID: 1924840639553172}
+  _lotions:
+  - {fileID: 114755315733149306}
+  - {fileID: 114200234392529558}
+  - {fileID: 114434622436108852}
+  - {fileID: 114356570721291676}
+  - {fileID: 114841745777674720}
 --- !u!114 &114841745777674720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -528,10 +538,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: dada7915639cf46fea4bfd2a9a8b910e, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
