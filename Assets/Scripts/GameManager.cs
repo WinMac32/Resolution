@@ -20,10 +20,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SceneManager.LoadScene(_buildSceneIndexToLoad);
+        
     }
 
     void Update()
     {
+    }
+
+    public void LoadNextLevel(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 }
