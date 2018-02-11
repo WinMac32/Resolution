@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
   walkSpeed: 3
-  jumpAmount: 10
+  jumpAmount: 7.5
   attackAnimLength: 1.33
 --- !u!114 &114913629617098654
 MonoBehaviour:
