@@ -75,7 +75,16 @@ public class PlayerController : MonoBehaviour
 
 			if (jump && isGrounded ()) {
 				playerBody.velocity += new Vector2 (0, jumpAmount);
-			}
+
+                AudioSource audioSource = GetComponent<AudioSource>();
+
+                if (audioSource == null)
+                {
+                    audioSource = this.gameObject.AddComponent<AudioSource>();
+                }
+
+                AudioManager.instance.PlayAudio(audioSource, SFX.Jump);
+            }
 
 			jump = false;
 		}
@@ -96,7 +105,7 @@ public class PlayerController : MonoBehaviour
     {
 		if (!gameManager.lotionManager.UseLotion (lotion)) {
 			Kill ();
-		} 
+		}
     }
 
 	public void getAttacked(int lotion) {

@@ -64,6 +64,15 @@ public class SpritzAbility : PlayerAbility
 			body.position = transform.position + new Vector3(0, projectileYOffset, 0);
             body.velocity = velocity;
 
+            AudioSource audioSource = GetComponent<AudioSource>();
+
+            if (audioSource == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
+            AudioManager.instance.PlayAudio(audioSource, SFX.Squirt);
+
 			animator.SetBool ("IsSpraying", true);
         }
     }

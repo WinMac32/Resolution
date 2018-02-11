@@ -194,6 +194,15 @@ public class EnemyController : MonoBehaviour {
         startAscendPosition = transform.position;
 
         RB2D.simulated = false;
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = this.gameObject.AddComponent<AudioSource>();
+        }
+
+        AudioManager.instance.PlayAudio(audioSource, SFX.Ascend);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -210,6 +219,15 @@ public class EnemyController : MonoBehaviour {
 					ignorePlayer = true;
 					isIdle = true;
 					fixedXSpeed ();
+
+                    AudioSource audioSource = GetComponent<AudioSource>();
+
+                    if (audioSource == null)
+                    {
+                        audioSource = this.gameObject.AddComponent<AudioSource>();
+                    }
+
+                    AudioManager.instance.PlayAudio(audioSource, SFX.PlayerHit);
 				}
 			}
 		}
