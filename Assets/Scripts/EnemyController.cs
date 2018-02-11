@@ -64,7 +64,7 @@ public class EnemyController : MonoBehaviour {
             ignorePlayer = false;
         }
         // Debug.Log("isIdle = " + isIdle);
-        Debug.Log("speed: " + speed + ", velocity: " + RB2D.velocity.magnitude);
+        // Debug.Log("speed: " + speed + ", velocity: " + RB2D.velocity.magnitude);
 	}
 
 
@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour {
 
     private void flip()
     {
-        Debug.Log("yeah");
+        //Debug.Log("yeah");
         //Todo flip the sprite
         isFacingRight *= -1;
         RB2D.velocity = new Vector2(speed*isFacingRight, RB2D.velocity.y);

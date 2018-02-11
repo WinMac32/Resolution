@@ -21,6 +21,7 @@ public class SpritzAbility : PlayerAbility
     private float lastActiveTime;
 
     private LotionManager lotionManager;
+	private Animator animator;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class SpritzAbility : PlayerAbility
         lotionManager = GameManager.instance.lotionManager;
         startTime = -1;
         lastActiveTime = Time.time;
+		animator = GetComponent<Animator> ();
     }
 
     void Update()
@@ -38,6 +40,8 @@ public class SpritzAbility : PlayerAbility
             {
                 startTime = -1;
                 particles.Stop();
+                lastActiveTime = Time.time;
+				animator.SetBool ("IsSpraying", false);
             }
         }
 
@@ -48,6 +52,7 @@ public class SpritzAbility : PlayerAbility
 
             lastActiveTime = Time.time;
             startTime = Time.time;
+
             particles.Play();
 
             var velocity = rotation * new Vector3(projectileSpeed, 0, 0);
@@ -57,6 +62,8 @@ public class SpritzAbility : PlayerAbility
             Rigidbody2D body = instance.GetComponent<Rigidbody2D>();
             body.position = transform.position + new Vector3(0, 0.5f, 0);
             body.velocity = velocity;
+
+			animator.SetBool ("IsSpraying", true);
         }
     }
 }

@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool jump;
 
     public bool left { get; private set; }
+	private Animator animator;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         playerCollider = GetComponent<BoxCollider2D>();
         colliderHeight = playerCollider.bounds.extents.y;
         layerMask = LayerMask.GetMask("Ground");
+		animator = GetComponent<Animator> ();
     }
 
     void Update()
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 velocity = new Vector2(xAxis * walkSpeed, playerBody.velocity.y);
         playerBody.velocity = velocity;
+		animator.SetFloat ("Running", Mathf.Abs(velocity.x));
 
         if (jump && isGrounded())
         {
