@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  searchRange: 5
+  searchRange: -1
   maxHP: 1
   currentHP: 0
   speed: 0.5
