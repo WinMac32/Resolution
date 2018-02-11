@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 61208104371250490}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,6 +231,7 @@ MonoBehaviour:
   traceDistance: 2
   lotionCost: 10
   projectileSpeed: 20
+  damage: 1
 --- !u!198 &198097192898638402
 ParticleSystem:
   m_ObjectHideFlags: 1
