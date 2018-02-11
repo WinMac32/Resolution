@@ -60,7 +60,7 @@ public class SpritzAbility : PlayerAbility
             var instance = Instantiate(projectile);
             instance.GetComponent<AbilityProjectile>().damage = damage;
             Rigidbody2D body = instance.GetComponent<Rigidbody2D>();
-            body.position = transform.position + new Vector3(0, 0.5f, 0);
+            body.position = transform.position + new Vector3(0, 0.1f, 0);
             body.velocity = velocity;
 
 			animator.SetBool ("IsSpraying", true);

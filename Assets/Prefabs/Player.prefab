@@ -265,7 +265,7 @@ MonoBehaviour:
   rechargeTime: 4
   traceDistance: 2
   lotionCost: 10
-  projectileSpeed: 20
+  projectileSpeed: 30
   damage: 1
 --- !u!198 &198097192898638402
 ParticleSystem:
