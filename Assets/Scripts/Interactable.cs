@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour
     {
         if (playerInside && Input.GetButtonDown(button))
         {
-            handler.handleAction();
+            handler.handleAction(gameObject);
         }
     }
 
