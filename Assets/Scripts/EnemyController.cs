@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
+        isIdle = true;
 	}
 
     private void Update()
@@ -49,7 +50,7 @@ public class EnemyController : MonoBehaviour {
         {
             Initialize();
         }
-		if (!isAttacking) {
+		if (!isAttacking && !isDying) {
 			displacement = target.transform.position - transform.position;
 			//Debug.Log("flipCD " + currentflipCd);
 			if (displacement.magnitude < searchRange && !ignorePlayer) {
@@ -83,31 +84,18 @@ public class EnemyController : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+		if (!isDying) {
+			if (collision.gameObject.tag.Equals ("Edge") || collision.gameObject.tag.Equals ("Enemy")) {
 
-       // Debug.Log("Position " + transform.position.x + "," + transform.position.y);
-        if (collision.gameObject.tag.Equals("Edge") || collision.gameObject.tag.Equals("Enemy"))
-        {
-
-            if (isIdle)
-            {
-                if(currentFlipCd < 0)
-                {
-                    flip();
+				if (isIdle) {
+					if (currentFlipCd < 0) {
+						flip ();
                     
-                }
+					}
                 
-            }
-
-  /*          else //currently tracing player
-            {
-                //don't jump off the edge
-                Vector2 displacementToEdge = collision.otherCollider.transform.position - transform.position;
-                if (getSign(displacement.x) == getSign(displacementToEdge.x)){
-                    RB2D.velocity = (new Vector2(0, RB2D.velocity.y));
-                }
-            }
-            */
-        }
+				}
+			}
+		}
     }
 
     private void flip()
@@ -161,12 +149,12 @@ public class EnemyController : MonoBehaviour {
 
     public void Damage(int amount)
     {
-		Debug.Log ("am I getting damaged?");
-        currentHP -= amount;
-        if (currentHP <= 0)
-        {
-            Kill();
-        }
+		if (!isDying) {
+			currentHP -= amount;
+			if (currentHP <= 0) {
+				Kill ();
+			}
+		}
     }
 
     public void Kill()
@@ -190,6 +178,7 @@ public class EnemyController : MonoBehaviour {
 
 		isDying = true;
 		dyingTime = 0f;
+		RB2D.velocity = new Vector2 (0, 0);
 		animator.SetTrigger ("ascend");
 
         AudioSource audioSource = GetComponent<AudioSource>();
@@ -204,30 +193,29 @@ public class EnemyController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (Time.time - lastHit >= hitSpeed)
-            {
-				animator.SetTrigger ("attack");
-				target.getAttacked(hitDamage);
-				isAttacking = true;
-				attackTime = 0.0f;
-				RB2D.velocity = new Vector2 (0, 0);
-				lastHit = Time.time;
-				ignorePlayer = true;
-				isIdle = true;
-				fixedXSpeed();
+		if (!isDying) {
+			if (collision.gameObject.tag == "Player") {
+				if (Time.time - lastHit >= hitSpeed) {
+					animator.SetTrigger ("attack");
+					target.getAttacked (hitDamage);
+					isAttacking = true;
+					attackTime = 0.0f;
+					RB2D.velocity = new Vector2 (0, 0);
+					lastHit = Time.time;
+					ignorePlayer = true;
+					isIdle = true;
+					fixedXSpeed ();
 
+                    AudioSource audioSource = GetComponent<AudioSource>();
 
-                AudioSource audioSource = GetComponent<AudioSource>();
+                    if (audioSource == null)
+                    {
+                        audioSource = this.gameObject.AddComponent<AudioSource>();
+                    }
 
-                if (audioSource == null)
-                {
-                    audioSource = this.gameObject.AddComponent<AudioSource>();
-                }
-
-                AudioManager.instance.PlayAudio(audioSource, SFX.PlayerHit);
-            }
-        }
+                    AudioManager.instance.PlayAudio(audioSource, SFX.PlayerHit);
+				}
+			}
+		}
     }
 }

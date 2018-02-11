@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 	private Animator animator;
 	private float attackTime = 0f;
 	private bool isBeingAttacked = false;
+	private bool isDead = false;
 
     void Start()
     {
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-		if (!isBeingAttacked) {
+		if (!isBeingAttacked && !isDead) {
 			float xAxis = Input.GetAxisRaw ("Horizontal");
 
 			if (xAxis < 0) {
@@ -114,7 +115,9 @@ public class PlayerController : MonoBehaviour
 	}
     public void Kill()
     {
-        // TODO
+		animator.SetTrigger ("IsDying");
+		playerBody.velocity = new Vector2 (0, 0);
+		isDead = true;
     }
 
 }
