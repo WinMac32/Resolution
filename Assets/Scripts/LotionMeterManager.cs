@@ -80,7 +80,6 @@ public class LotionMeterManager : MonoBehaviour {
 
 	private void UpdateBottleDisplay()
 	{
-		Debug.Log ("bottleCount: " + _currentLotionBottleCount); 
 		for (int i = 0; i < _lotionObjects.Length; ++i)
 		{
             _lotionObjects[i].SetActive(i <= _currentLotionBottleCount);

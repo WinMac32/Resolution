@@ -16,6 +16,7 @@ public class LotionRefillInteraction : InteractionHandler
     public override void HandleAction(GameObject source)
     {
         lotionManager.RefillLotion(lotionRefill);
+
         DestroyObject(source);
     }
 }

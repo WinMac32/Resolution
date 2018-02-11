@@ -47,6 +47,14 @@ public class ElevatorControler : MonoBehaviour {
             target.currentCD = CD;
             currentCD = CD;
 
+            AudioSource audioSource = GetComponent<AudioSource>();
+
+            if (audioSource == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
+            AudioManager.instance.PlayAudio(audioSource, SFX.Teleport);
         }
     }
 }

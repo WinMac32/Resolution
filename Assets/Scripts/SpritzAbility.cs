@@ -15,6 +15,7 @@ public class SpritzAbility : PlayerAbility
     public float traceDistance;
     public float lotionCost = 10f;
     public float projectileSpeed = 5f;
+	public float projectileYOffset = 0.15f;
     public int damage;
 
     private float startTime;
@@ -60,8 +61,17 @@ public class SpritzAbility : PlayerAbility
             var instance = Instantiate(projectile);
             instance.GetComponent<AbilityProjectile>().damage = damage;
             Rigidbody2D body = instance.GetComponent<Rigidbody2D>();
-            body.position = transform.position + new Vector3(0, 0.1f, 0);
+			body.position = transform.position + new Vector3(0, projectileYOffset, 0);
             body.velocity = velocity;
+
+            AudioSource audioSource = GetComponent<AudioSource>();
+
+            if (audioSource == null)
+            {
+                audioSource = this.gameObject.AddComponent<AudioSource>();
+            }
+
+            AudioManager.instance.PlayAudio(audioSource, SFX.Squirt);
 
 			animator.SetBool ("IsSpraying", true);
         }
