@@ -134,6 +134,8 @@ MonoBehaviour:
   maxHP: 3
   currentHP: 0
   speed: 2
+  hitSpeed: 1
+  hitDamage: 10
 --- !u!212 &212298310238995256
 SpriteRenderer:
   m_ObjectHideFlags: 1

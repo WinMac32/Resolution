@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        gameManager = GetComponent<GameManager>();
+        gameManager = GameManager.instance;
         playerBody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
         colliderHeight = playerCollider.bounds.extents.y;
@@ -76,4 +76,18 @@ public class PlayerController : MonoBehaviour
     {
         transform.localScale = new Vector2(mult * Mathf.Abs(transform.localScale.x), transform.localScale.y);
     }
+
+    public void Damage(int lotion)
+    {
+        if (!gameManager.lotionManager.UseLotion(lotion))
+        {
+            Kill();
+        }
+    }
+
+    public void Kill()
+    {
+        // TODO
+    }
+
 }
