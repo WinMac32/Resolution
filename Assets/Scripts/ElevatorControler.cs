@@ -12,6 +12,7 @@ public class ElevatorControler : MonoBehaviour {
     public float currentCD = 0;
 	// Use this for initialization
 	void Start () {
+        player = GetComponent<PlayerController>();
         if (isPlatfromHere)
         {
             platfrom.SetActive(true);

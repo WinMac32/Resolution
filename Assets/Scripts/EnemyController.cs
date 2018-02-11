@@ -146,6 +146,7 @@ public class EnemyController : MonoBehaviour {
         isInitalized = true;
     }
 
+    //enemy getting hit
     public void Damage(int amount)
     {
         currentHP -= amount;
