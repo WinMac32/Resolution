@@ -16,7 +16,8 @@ public class AudioManager : MonoBehaviour {
 
     public static AudioManager instance { get; private set; }
 
-    private AudioSource _audioSource;
+    [HideInInspector]
+    public AudioSource _audioSource;
 
     [SerializeField]
     private AudioClip _jumpSFX;
@@ -43,27 +44,33 @@ public class AudioManager : MonoBehaviour {
         _audioSource = this.GetComponent<AudioSource>();
     }
 
-	public void PlayAudio(SFX sfx)
+	public void PlayAudio(AudioSource source, SFX sfx)
 	{
 		switch(sfx)
 		{
 			case SFX.Jump:
-                _audioSource.PlayOneShot(_jumpSFX);
+                source.clip = _jumpSFX;
+                source.Play();
                 break;
 			case SFX.Teleport:
-                _audioSource.PlayOneShot(_teleportSFX);
+                source.clip = _teleportSFX;
+                source.Play();
                 break;
 			case SFX.Ascend:
-                _audioSource.PlayOneShot(_ascendSFX);
+                source.clip = _ascendSFX;
+                source.Play();
                 break;
 			case SFX.Squirt:
-                _audioSource.PlayOneShot(_squirtSFX);
+                source.clip = _squirtSFX;
+                source.Play();
                 break;
 			case SFX.PlayerHit:
-                _audioSource.PlayOneShot(_playerHitSFX);
+                source.clip = _playerHitSFX;
+                source.Play();
                 break;
 			case SFX.Steam:
-                _audioSource.PlayOneShot(_steamSFX);
+                source.clip = _steamSFX;
+                source.Play();
                 break;
         }
 	}

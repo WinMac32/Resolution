@@ -191,7 +191,15 @@ public class EnemyController : MonoBehaviour {
 		isDying = true;
 		dyingTime = 0f;
 		animator.SetTrigger ("ascend");
-        AudioManager.instance.PlayAudio(SFX.Ascend);
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = this.gameObject.AddComponent<AudioSource>();
+        }
+
+        AudioManager.instance.PlayAudio(audioSource, SFX.Ascend);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -209,6 +217,16 @@ public class EnemyController : MonoBehaviour {
 				ignorePlayer = true;
 				isIdle = true;
 				fixedXSpeed();
+
+
+                AudioSource audioSource = GetComponent<AudioSource>();
+
+                if (audioSource == null)
+                {
+                    audioSource = this.gameObject.AddComponent<AudioSource>();
+                }
+
+                AudioManager.instance.PlayAudio(audioSource, SFX.PlayerHit);
             }
         }
     }
