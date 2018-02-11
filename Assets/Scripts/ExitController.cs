@@ -15,11 +15,8 @@ public class ExitController : MonoBehaviour {
     {
 
         if (collision.gameObject.tag=="Player" )
-        //&& lotionManager.lotionStash > lotionNeeded
         {
-            //Do something
-            //loadScene();
-            print("you are out of here");
+			GameManager.instance.LoadScene("End Scene");
         }
     }
     // Update is called once per frame
