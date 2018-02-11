@@ -14759,6 +14759,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!1001 &501914467
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4359528834779068, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 13.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359528834779068, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 13.478
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359528834779068, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.09442238
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359528834779068, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359528834779068, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359528834779068, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359528834779068, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359528834779068, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835084039646874, guid: f6c26a52949da1a478642d34c70db3fd,
+        type: 2}
+      propertyPath: sceneName
+      value: End Scene
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f6c26a52949da1a478642d34c70db3fd, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &502300594 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1648110874863554, guid: 8f3849533c5d37d4d8183186c0b725a4,
