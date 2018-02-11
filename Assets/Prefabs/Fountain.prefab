@@ -21,8 +21,11 @@ GameObject:
   - component: {fileID: 4259793446509326}
   - component: {fileID: 212491527594808436}
   - component: {fileID: 198161732981796844}
+  - component: {fileID: 114939943168251782}
+  - component: {fileID: 114619097432096122}
   - component: {fileID: 199449192446830024}
-  m_Layer: 0
+  - component: {fileID: 61389634339080876}
+  m_Layer: 13
   m_Name: Fountain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,12 +39,62 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1730238311659402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.247, y: -0.413, z: -0.013671875}
+  m_LocalPosition: {x: 3.146283, y: -0.90629596, z: -0.013671875}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61389634339080876
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730238311659402}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.32}
+  m_EdgeRadius: 0
+--- !u!114 &114619097432096122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730238311659402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3785d2c646f5f3d4fa70c570e2917392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lotionRefill: 40
+--- !u!114 &114939943168251782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730238311659402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b80b7614af99784fab68b2df597551c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: Activate
+  handler: {fileID: 114619097432096122}
 --- !u!198 &198161732981796844
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -102,7 +155,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 570493164
+  randomSeed: 1231759441
   InitialModule:
     serializedVersion: 3
     enabled: 1
