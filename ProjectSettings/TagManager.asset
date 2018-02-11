@@ -21,8 +21,8 @@ TagManager:
   - Enemies
   - Edge
   - Projectile
-  - 
-  - 
+  - Interactable
+  - DropSpawners
   - 
   - 
   - 
