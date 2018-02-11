@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
 
     public LotionManager lotionManager;
+    [SerializeField]
+    private int _buildSceneIndexToLoad;
 
     private void Awake()
     {
@@ -18,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SceneManager.LoadScene("TestLevel");
+        SceneManager.LoadScene(_buildSceneIndexToLoad);
     }
 
     void Update()

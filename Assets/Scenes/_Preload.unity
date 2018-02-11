@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lotionManager: {fileID: 296000286}
+  _buildSceneIndexToLoad: 2
 --- !u!4 &296000285
 Transform:
   m_ObjectHideFlags: 0
