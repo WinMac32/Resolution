@@ -119,11 +119,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   searchRange: 5
-  maxHP: 3
+  maxHP: 1
   currentHP: 0
   speed: 2
   hitSpeed: 1
   hitDamage: 10
+  attackAnimLength: 1.33
+  deathAnimLength: 1.5
 --- !u!212 &212315527934774286
 SpriteRenderer:
   m_ObjectHideFlags: 1

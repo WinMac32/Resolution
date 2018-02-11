@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour {
     public float hitSpeed;
     public int hitDamage;
 	public float attackAnimLength = 1.4f;
+	public float deathAnimLength = 1.5f;
 
     private Vector2 displacement;
     private Rigidbody2D RB2D;
@@ -22,7 +23,9 @@ public class EnemyController : MonoBehaviour {
     private bool isInitalized = false;
     private bool ignorePlayer;
 	private bool isAttacking = false;
+	private bool isDying = false;
 	private float attackTime = 0f;
+	private float dyingTime = 0f;
     // private bool isGrounded = false;
 	private Animator animator;
 
@@ -37,6 +40,7 @@ public class EnemyController : MonoBehaviour {
     {
         currentFlipCd -= Time.deltaTime;
 		attackTime += Time.deltaTime;
+		dyingTime += Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -61,6 +65,10 @@ public class EnemyController : MonoBehaviour {
 				isIdle = true;
 				//fixedXSpeed();
 				ignorePlayer = false;
+			}
+		} else if (isDying) {
+			if (dyingTime > deathAnimLength) {
+				DestroyObject(gameObject);
 			}
 		} else {
 
@@ -153,6 +161,7 @@ public class EnemyController : MonoBehaviour {
 
     public void Damage(int amount)
     {
+		Debug.Log ("am I getting damaged?");
         currentHP -= amount;
         if (currentHP <= 0)
         {
@@ -175,9 +184,13 @@ public class EnemyController : MonoBehaviour {
             }
         }
 
-        minSpawner.spawn();
+		if (minSpawner != null) {
+        	minSpawner.spawn();
+		}
 
-        DestroyObject(gameObject);
+		isDying = true;
+		dyingTime = 0f;
+		animator.SetTrigger ("ascend");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -187,7 +200,7 @@ public class EnemyController : MonoBehaviour {
             if (Time.time - lastHit >= hitSpeed)
             {
 				animator.SetTrigger ("attack");
-				target.Damage(hitDamage);
+				target.getAttacked(hitDamage);
 				isAttacking = true;
 				attackTime = 0.0f;
 				RB2D.velocity = new Vector2 (0, 0);

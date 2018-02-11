@@ -19,8 +19,12 @@ public class PlayerController : MonoBehaviour
 
     private bool jump;
 
+	public float attackAnimLength = 1.33f;
+
     public bool left { get; private set; }
 	private Animator animator;
+	private float attackTime = 0f;
+	private bool isBeingAttacked = false;
 
     void Start()
     {
@@ -41,33 +45,39 @@ public class PlayerController : MonoBehaviour
         {
             jump = true;
         }
+
+		if (isBeingAttacked) {
+			playerBody.velocity = new Vector2 (0, 0);
+			attackTime += Time.deltaTime;
+			if (attackTime > attackAnimLength) {
+				isBeingAttacked = false;
+			}
+		}
     }
 
     private void FixedUpdate()
     {
-        float xAxis = Input.GetAxisRaw("Horizontal");
+		if (!isBeingAttacked) {
+			float xAxis = Input.GetAxisRaw ("Horizontal");
 
-        if (xAxis < 0)
-        {
-            Flip(-1);
-            left = true;
-        }
-        else if (xAxis > 0)
-        {
-            Flip(1);
-            left = false;
-        }
+			if (xAxis < 0) {
+				Flip (-1);
+				left = true;
+			} else if (xAxis > 0) {
+				Flip (1);
+				left = false;
+			}
 
-        Vector2 velocity = new Vector2(xAxis * walkSpeed, playerBody.velocity.y);
-        playerBody.velocity = velocity;
-		animator.SetFloat ("Running", Mathf.Abs(velocity.x));
+			Vector2 velocity = new Vector2 (xAxis * walkSpeed, playerBody.velocity.y);
+			playerBody.velocity = velocity;
+			animator.SetFloat ("Running", Mathf.Abs (velocity.x));
 
-        if (jump && isGrounded())
-        {
-            playerBody.velocity += new Vector2(0, jumpAmount);
-        }
+			if (jump && isGrounded ()) {
+				playerBody.velocity += new Vector2 (0, jumpAmount);
+			}
 
-        jump = false;
+			jump = false;
+		}
     }
 
     private bool isGrounded()
@@ -83,12 +93,17 @@ public class PlayerController : MonoBehaviour
     //player getting hit
     public void Damage(int lotion)
     {
-        if (!gameManager.lotionManager.UseLotion(lotion))
-        {
-            Kill();
-        }
+		if (!gameManager.lotionManager.UseLotion (lotion)) {
+			Kill ();
+		} 
     }
 
+	public void getAttacked(int lotion) {
+		Damage (lotion);
+		Debug.Log ("getting hurt");
+		isBeingAttacked = true;
+		attackTime = 0f;
+	}
     public void Kill()
     {
         // TODO

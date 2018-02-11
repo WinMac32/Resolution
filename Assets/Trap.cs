@@ -13,13 +13,11 @@ public class Trap : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print("hello");
         if (collision.gameObject.tag.Equals("Player") && currentTime<0)
         {
             player = collision.gameObject.GetComponent<PlayerController>();
             player.Damage(DoTDamage);
             currentTime = DoTPeriod;
-            print("hi");
         }
     }
 

@@ -15,7 +15,6 @@ public class LotionManager : MonoBehaviour
         if (lotionStash > amount)
         {
             lotionStash -= amount;
-            Debug.Log("Our lotion is now " + lotionStash);
 
             if (onUseLotion != null)
             {
