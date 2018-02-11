@@ -13,12 +13,14 @@ public class SpritzAbility : PlayerAbility
 
     private float startTime;
     private float lastActiveTime;
+	private Animator animator;
 
     void Start()
     {
         startTime = -1;
         lastActiveTime = Time.time;
-    }
+		animator = GetComponent<Animator> ();
+	}
 
     void Update()
     {
@@ -29,6 +31,7 @@ public class SpritzAbility : PlayerAbility
                 startTime = -1;
                 particles.Stop();
                 lastActiveTime = Time.time;
+				animator.SetBool ("IsSpraying", false);
             }
         }
 
@@ -36,6 +39,7 @@ public class SpritzAbility : PlayerAbility
         {
             startTime = Time.time;
             particles.Play();
+			animator.SetBool ("IsSpraying", true);
         }
     }
 }

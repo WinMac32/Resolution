@@ -169,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.002655685, y: 0.3064695}
+  m_Offset: {x: -0.002655685, y: 0.31455046}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -180,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19783604, y: 0.6312573}
+  m_Size: {x: 0.19783604, y: 0.6150954}
   m_EdgeRadius: 0
 --- !u!95 &95427948465307572
 Animator:
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  walkSpeed: 5
+  walkSpeed: 3
   jumpAmount: 20
   abilityEmitters:
   - {fileID: 4387311281295078}
