@@ -189,6 +189,7 @@ MonoBehaviour:
   _squirtSFX: {fileID: 8300000, guid: 931fe12de7a644e0b988850ecb943fb6, type: 3}
   _playerHitSFX: {fileID: 8300000, guid: 1188e990f82f744f38a5588aa51a9053, type: 3}
   _steamSFX: {fileID: 8300000, guid: ce71c664ba6f04863833223efbee6e1b, type: 3}
+  _refillSFX: {fileID: 8300000, guid: 5a1d41ff5e5404c7588f0073ed0958f8, type: 3}
 --- !u!82 &296000288
 AudioSource:
   m_ObjectHideFlags: 0

@@ -31,6 +31,15 @@ public class LotionManager : MonoBehaviour
     public void RefillLotion(float amount)
     {
         lotionStash += amount;
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = this.gameObject.AddComponent<AudioSource>();
+        }
+
+        AudioManager.instance.PlayAudio(audioSource, SFX.Refill);
         
         if (lotionStash > maxLotion)
         {
