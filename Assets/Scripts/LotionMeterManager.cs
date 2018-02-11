@@ -16,11 +16,13 @@ public class LotionMeterManager : MonoBehaviour {
     private int _lastLotionBottleCount = 0;
     private int _currentLotionBottleCount;
     private int _lotionsPerBottle;
+    private bool _onRefill;
 
     void Start()
 	{
         _lotionManager = GameManager.instance.lotionManager;
 		_lotionManager.onUseLotion += HandleOnUseLotion;
+        _lotionManager.onRefillLotion += HandleOnRefillLotion;
 
         _maxLotion = _lotionManager.maxLotion;
 
@@ -35,8 +37,20 @@ public class LotionMeterManager : MonoBehaviour {
 		}
     }
 
+    private void HandleOnRefillLotion()
+    {
+        _onRefill = true;
+        HandleUse();
+    }
+
 	private void HandleOnUseLotion()
 	{
+        _onRefill = false;
+        HandleUse();
+    }
+
+    private void HandleUse()
+    {
         _currentLotion = _lotionManager.lotionStash;
         _lotionsPerBottle = (int)(_maxLotion / _lotionObjects.Length);
         _currentLotionBottleCount = Mathf.FloorToInt((_currentLotion - 1) / _lotionsPerBottle);
@@ -49,7 +63,14 @@ public class LotionMeterManager : MonoBehaviour {
                 UpdateBottleDisplay();
             }
 
-            UpdateLotionAmount();
+            if (_onRefill)
+            {
+                UpdateLotionAmountOnRefill();
+            }
+            else
+            {
+                UpdateLotionAmount();
+            }
         }
 
         _lastLotionBottleCount = _currentLotionBottleCount;
@@ -81,5 +102,15 @@ public class LotionMeterManager : MonoBehaviour {
         }
 
         _lotions[_currentLotionBottleCount].fillAmount = fillRatio;
+    }
+
+    private void UpdateLotionAmountOnRefill()
+    {
+        for (int i = _lastLotionBottleCount; i < _currentLotionBottleCount; ++i)
+        {
+            _lotions[i].fillAmount = 1f;
+        }
+
+        UpdateLotionAmount();
     }
 }
