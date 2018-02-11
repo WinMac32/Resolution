@@ -9,6 +9,9 @@ public class EnemyController : MonoBehaviour {
     public int maxHP = 3;
     public int currentHP;
     public float speed = 2;
+    public float hitSpeed;
+    public int hitDamage;
+
     private Vector2 displacement;
     private Rigidbody2D RB2D;
     private bool isIdle = true;
@@ -16,8 +19,10 @@ public class EnemyController : MonoBehaviour {
     private float currentFlipCd = 0f;
     private float isFacingRight = 1f;
     private bool isInitalized = false;
-   // private bool isGrounded = false;
+    private bool ignorePlayer;
+    // private bool isGrounded = false;
 
+    private float lastHit;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +43,7 @@ public class EnemyController : MonoBehaviour {
         }
         displacement = target.transform.position -transform.position;
         //Debug.Log("flipCD " + currentflipCd);
-        if (displacement.magnitude < searchRange)
+        if (displacement.magnitude < searchRange && !ignorePlayer)
         {
             RB2D.velocity=new Vector2(speed*getSign(displacement.x), RB2D.velocity.y);
             //fixedXSpeed();
@@ -56,10 +61,10 @@ public class EnemyController : MonoBehaviour {
         {
             isIdle = true;
             //fixedXSpeed();
-            
+            ignorePlayer = false;
         }
         // Debug.Log("isIdle = " + isIdle);
-        Debug.Log("speed: " + speed + ", velocity: " + RB2D.velocity.magnitude);
+        // Debug.Log("speed: " + speed + ", velocity: " + RB2D.velocity.magnitude);
 	}
 
 
@@ -94,7 +99,7 @@ public class EnemyController : MonoBehaviour {
 
     private void flip()
     {
-        Debug.Log("yeah");
+        //Debug.Log("yeah");
         //Todo flip the sprite
         isFacingRight *= -1;
         RB2D.velocity = new Vector2(speed*isFacingRight, RB2D.velocity.y);
@@ -139,5 +144,35 @@ public class EnemyController : MonoBehaviour {
             fixedXSpeed();
         }
         isInitalized = true;
+    }
+
+    public void Damage(int amount)
+    {
+        currentHP -= amount;
+        if (currentHP <= 0)
+        {
+            Kill();
+        }
+    }
+
+    public void Kill()
+    {
+        // TODO
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (Time.time - lastHit >= hitSpeed)
+            {
+                target.Damage(hitDamage);
+                lastHit = Time.time;
+                ignorePlayer = true;
+                flip();
+                isIdle = true;
+                fixedXSpeed();
+            }
+        }
     }
 }
