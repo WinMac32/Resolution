@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SceneManager.LoadScene(_buildSceneIndexToLoad);
+        
     }
 
     void Update()
     {
     }
-
+		
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);

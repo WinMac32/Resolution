@@ -9,7 +9,8 @@ public enum SFX
 	Ascend,
 	Squirt,
 	PlayerHit,
-	Steam
+	Steam,
+    Refill
 }
 
 public class AudioManager : MonoBehaviour {
@@ -31,7 +32,8 @@ public class AudioManager : MonoBehaviour {
     private AudioClip _playerHitSFX;
 	[SerializeField]
     private AudioClip _steamSFX;
-	
+	[SerializeField]
+    private AudioClip _refillSFX;
 
     private void Awake()
 	{
@@ -70,6 +72,10 @@ public class AudioManager : MonoBehaviour {
                 break;
 			case SFX.Steam:
                 source.clip = _steamSFX;
+                source.Play();
+                break;
+            case SFX.Refill:
+                source.clip = _refillSFX;
                 source.Play();
                 break;
         }
