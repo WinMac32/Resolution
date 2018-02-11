@@ -409,9 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  platfrom: {fileID: 1604024936967852}
-  isPlatfromHere: 1
-  CD: 3
+  CD: 10
   currentCD: 0
 --- !u!212 &212197708407511158
 SpriteRenderer:

@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        player = FindObjectOfType<PlayerController>();
 		if (swampPoints.Length > 0)
         {
             for (int i=0; i < swampPoints.Length; i++)
