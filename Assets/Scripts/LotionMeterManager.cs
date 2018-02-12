@@ -39,6 +39,12 @@ public class LotionMeterManager : MonoBehaviour {
 		UpdateBottleDisplay ();
     }
 
+    void OnDestroy()
+    {
+        _lotionManager.onUseLotion -= HandleOnUseLotion;
+        _lotionManager.onRefillLotion -= HandleOnRefillLotion;
+    }   
+
     private void HandleOnRefillLotion()
     {
         _onRefill = true;
